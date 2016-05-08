@@ -1,21 +1,27 @@
 $(function(){
   $('#send').click(function(){
-   
-//     $( "section" ).scrollTop(2000);
-    var id = $(this).attr('data-t');
-    var text = $('#' + id).val();
-    var vaal = $('#me').val();
-   // alert(vaal);
-    if(vaal != "") {
-    $('ul').append('<li class="talk-bubble tri-right btm-right">' + '<p class="firstpersonmsg">'+ text + '</p>' + '</li>');
-    $('#' + id).val('');
-//     $( "section" ).scrollTop(2000);
-    $( "#me" ).focus();
-    }
-    else { 
-    $( "#me" ).focus();}
+    sendMsg();
+  });
+  
+  $('#me').keypress(function(e){
+	 if ( e.keyCode == 13 ) {
+		 sendMsg();
+	 } 
   });
 });
 
 
+function sendMsg() {
+ 	var id = $('#send').attr('data-t');
+    var text = $('#' + id).val();
+    var vaal = $('#me').val();
+    if(vaal != "") {
+    $('ul').append('<li class="talk-bubble tri-right btm-right">' + '<p class="firstpersonmsg">'+ text + '</p>' + '</li>');
+    $('#' + id).val('');
+    $( "#me" ).focus();
+    }
+    else { 
+    $( "#me" ).focus();
+    }	
+}
 
